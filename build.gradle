@@ -3,6 +3,7 @@
 buildscript {
     //kotlin版本号
     ext.kotlin_version = '1.2.71'
+    //ext.kotlin_version = '1.2.61' '1.2.71'
     repositories {
         google()
         jcenter()
