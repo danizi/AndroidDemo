@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".TextViewAct">
 
-    <!--普通的TextView-->
+    <!--
+    普通的TextView
+    -->
     <TextView
         android:id="@+id/tv_common"
         android:layout_width="wrap_content"
@@ -40,20 +42,24 @@
         app:layout_constraintRight_toRightOf="@+id/tv_common"
         app:layout_constraintTop_toBottomOf="@+id/tv_common" />
 
-    <!--带边框的TextView-->
+    <!--
+    带边框的TextView
+    -->
     <TextView
         android:id="@+id/tv_border"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border"
+        android:background="@drawable/btn_border"
         android:text="带边框的TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_shadow" />
 
-    <!--带图片的TextView-->
+    <!--
+    带图片的TextView
+    -->
     <TextView
         android:id="@+id/tv_img"
         android:layout_width="wrap_content"
@@ -67,7 +73,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_border" />
 
-    <!--链接 自动识别 电话 邮件 链接-->
+    <!--
+    链接 自动识别 电话 邮件 链接
+    -->
     <TextView
         android:id="@+id/tv_link"
         android:layout_width="wrap_content"
@@ -80,11 +88,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_img" />
 
-    <!--跑马灯效果 要获取焦点才能滚动-->
+    <!--
+    跑马灯效果 要获取焦点才能滚动
+    -->
     <TextView
         android:id="@+id/tv_marquee"
         android:layout_width="80dp"
-
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ellipsize="marquee"
@@ -93,8 +102,7 @@
         android:lineSpacingExtra="50dp"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
-        android:text="你整天说着日了狗日了狗，但是你却没有来，呵呵呵呵呵呵呵呵呵呵~"
-
+        android:text="跑马灯效果 要获取焦点才能滚动~"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,5 +110,18 @@
 
     <!--显示...-->
 
-    <!--定制文本-->
+    <!--
+    定制文本
+    -->
+    <TextView
+        android:id="@+id/tv_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="我是定制文本"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_marquee" />
+
 </android.support.constraint.ConstraintLayout>

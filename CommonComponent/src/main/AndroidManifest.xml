@@ -16,7 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextViewAct"></activity>
+        <activity android:name=".TextViewAct" />
+        <activity android:name=".EditTextAct" />
+        <activity android:name=".ButtonAct" />
+        <activity android:name=".ImageViewAct" />
+        <activity android:name=".SeekBarAct" />
+        <activity android:name=".ScrollViewAct" />
+        <activity android:name=".ViewPagerAct" />
+        <activity android:name=".NotificationAct" />
+        <activity android:name=".AlertDialogAct" />
+        <activity android:name=".DrawerLayoutAct"></activity>
     </application>
 
 </manifest>
