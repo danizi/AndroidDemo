@@ -134,7 +134,7 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
         //2 建造notification
         val builder = NotificationCompat.Builder(this)
         val remoteView = RemoteViews(packageName, R.layout.notification_custom)//自定义通知布局
-        builder.setSmallIcon(R.mipmap.ic_launcher)      //通知标题 必须设置
+        builder.setSmallIcon(R.mipmap.ic_launcher)       //通知标题 必须设置
                 .setPriority(PRIORITY_DEFAULT)           //通知优先级 有五个优先级别，范围从 PRIORITY_MIN (-2) 到 PRIORITY_MAX (2)；如果未设置，则优先级默认为 PRIORITY_DEFAULT (0)。
                 .setContentIntent(pendingIntent)         //用户点击跳转的意图设置
                 .setContent(remoteView)
