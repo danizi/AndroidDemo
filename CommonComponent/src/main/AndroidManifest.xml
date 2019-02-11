@@ -16,16 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextViewAct" />
-        <activity android:name=".EditTextAct" />
-        <activity android:name=".ButtonAct" />
-        <activity android:name=".ImageViewAct" />
-        <activity android:name=".SeekBarAct" />
-        <activity android:name=".ScrollViewAct" />
-        <activity android:name=".ViewPagerAct" />
-        <activity android:name=".NotificationAct" />
-        <activity android:name=".AlertDialogAct" />
-        <activity android:name=".DrawerLayoutAct"></activity>
+        <activity android:name=".ui.TextViewAct" />
+        <activity android:name=".ui.EditTextAct" />
+        <activity android:name=".ui.ButtonAct" />
+        <activity android:name=".ui.ImageViewAct" />
+        <activity android:name=".ui.SeekBarAct" />
+        <activity android:name=".ui.ScrollViewAct" />
+        <activity android:name=".ui.ViewPagerAct" />
+        <activity android:name=".ui.NotificationAct" />
+        <activity android:name=".ui.AlertDialogAct" />
+        <activity android:name=".ui.DrawerLayoutAct" />
+        <activity android:name=".ui.RadioButtonAct" />
+        <activity android:name=".ui.ToggleButtonAct" />
+        <activity android:name=".ui.ProgressBarAct" />
+        <activity android:name=".ui.ListViewAct" />
+        <activity android:name=".ui.GridViewAct" />
+        <activity android:name=".ui.SpinnerAct" />
+        <activity android:name=".ui.AutoCompleteTextViewAct" />
+        <activity android:name=".ui.ViewFlipperAct" />
+        <activity android:name=".ui.ToastAct" />
+        <activity android:name=".ui.PopupWindowAct" />
+        <activity android:name=".ui.MenuAct"></activity>
     </application>
 
 </manifest>

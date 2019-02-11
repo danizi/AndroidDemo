@@ -1,4 +1,4 @@
-package com.xm.commoncomponent
+package com.xm.commoncomponent.ui
 
 import android.graphics.Color
 import android.graphics.MaskFilter
@@ -12,6 +12,8 @@ import android.text.style.*
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.xm.commoncomponent.ISetup
+import com.xm.commoncomponent.R
 
 
 class TextViewAct : AppCompatActivity(), ISetup {

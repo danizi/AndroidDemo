@@ -1,4 +1,4 @@
-package com.xm.commoncomponent
+package com.xm.commoncomponent.ui
 
 import android.content.Context
 import android.graphics.Color
@@ -14,6 +14,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.xm.commoncomponent.ISetup
+import com.xm.commoncomponent.R
 
 
 /**

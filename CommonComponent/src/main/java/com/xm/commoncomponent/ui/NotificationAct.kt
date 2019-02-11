@@ -1,4 +1,4 @@
-package com.xm.commoncomponent
+package com.xm.commoncomponent.ui
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.RemoteViews
+import com.xm.commoncomponent.ISetup
+import com.xm.commoncomponent.MainActivity
+import com.xm.commoncomponent.R
 
 
 /**
@@ -22,6 +25,19 @@ import android.widget.RemoteViews
  * https://www.cnblogs.com/travellife/p/Android-Notification-xiang-jie.html
  */
 class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
+
+    /**
+     * 消息通知类型
+     */
+    companion object {
+        val ID_NOTIFICATION_1 = 1
+        val ID_NOTIFICATION_2 = 2
+        val ID_NOTIFICATION_3 = 3
+        val ID_PROCESS_NOTIFICATION = 4
+        val ID_FLOAT_NOTIFICATION = 5
+        val ID_MEDIA_NOTIFICATION = 6
+        val ID_CUSTOM_NOTIFICATION = 7
+    }
 
     private var btnNotification1: Button? = null
     private var btnNotification2: Button? = null
@@ -32,7 +48,6 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
     private var btnFloatNotification: Button? = null
     private var btnMediaNotification: Button? = null
     private var btnCustomNotification: Button? = null
-
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,16 +81,6 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
         btnFloatNotification?.setOnClickListener(this)
         btnMediaNotification?.setOnClickListener(this)
         btnCustomNotification?.setOnClickListener(this)
-    }
-
-    companion object {
-        val ID_NOTIFICATION_1 = 1
-        val ID_NOTIFICATION_2 = 2
-        val ID_NOTIFICATION_3 = 3
-        val ID_PROCESS_NOTIFICATION = 4
-        val ID_FLOAT_NOTIFICATION = 5
-        val ID_MEDIA_NOTIFICATION = 6
-        val ID_CUSTOM_NOTIFICATION = 7
     }
 
     override fun onClick(v: View?) {

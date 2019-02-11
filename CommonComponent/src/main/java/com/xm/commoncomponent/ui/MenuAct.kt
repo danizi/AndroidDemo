@@ -1,12 +1,12 @@
-package com.xm.commoncomponent
+package com.xm.commoncomponent.ui
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 
-class AlertDialogAct : AppCompatActivity() {
+class MenuAct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_alert_dialog)
+        setContentView(R.layout.activity_menu)
     }
 }
