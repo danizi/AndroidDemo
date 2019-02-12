@@ -1,5 +1,6 @@
 package com.xm.commoncomponent.ui
 
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -12,12 +13,14 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationCompat.PRIORITY_DEFAULT
 import android.support.v4.app.TaskStackBuilder
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RemoteViews
 import com.xm.commoncomponent.ISetup
 import com.xm.commoncomponent.MainActivity
 import com.xm.commoncomponent.R
+import com.xm.commoncomponent.ui.notification.NotificationService
 
 
 /**
@@ -48,6 +51,7 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
     private var btnFloatNotification: Button? = null
     private var btnMediaNotification: Button? = null
     private var btnCustomNotification: Button? = null
+    private var btnPreServer: Button? = null
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +73,7 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
         btnFloatNotification = findViewById(R.id.btn_float_notification)
         btnMediaNotification = findViewById(R.id.btn_media_notification)
         btnCustomNotification = findViewById(R.id.btn_custom_notification)
+        btnPreServer = findViewById(R.id.btn_pre_server)
     }
 
     override fun initEvent() {
@@ -81,6 +86,7 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
         btnFloatNotification?.setOnClickListener(this)
         btnMediaNotification?.setOnClickListener(this)
         btnCustomNotification?.setOnClickListener(this)
+        btnPreServer?.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -121,6 +127,10 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
                 //自定义通知
                 sendCustomNotification()
             }
+            btnPreServer -> {
+                //开启一个播放服务,使用了broadcast+service知识点
+                startService(Intent(this@NotificationAct, NotificationService::class.java))
+            }
         }
     }
 
@@ -150,10 +160,51 @@ class NotificationAct : AppCompatActivity(), ISetup, View.OnClickListener {
     }
 
     private fun sendMediaNotification() {
+        //1 构建用户点击跳转的意图
+        val taskStackBuilder = TaskStackBuilder.create(this)
+        val nextIntent = Intent(this, MainActivity::class.java)
+        taskStackBuilder.addParentStack(MainActivity::class.java)
+        taskStackBuilder.addNextIntent(nextIntent)
+        val pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
+        //2 建造notification
+        val builder = NotificationCompat.Builder(this)
+        val remoteView = RemoteViews(packageName, R.layout.notification_media)//自定义通知布局
+        builder.setSmallIcon(R.mipmap.ic_launcher)       //通知标题 必须设置
+                .setPriority(PRIORITY_DEFAULT)           //通知优先级 有五个优先级别，范围从 PRIORITY_MIN (-2) 到 PRIORITY_MAX (2)；如果未设置，则优先级默认为 PRIORITY_DEFAULT (0)。
+                .setContentIntent(pendingIntent)         //用户点击跳转的意图设置
+                .setContent(remoteView)
+
+        //3 更新通知notification
+        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(ID_CUSTOM_NOTIFICATION, builder.build())
     }
 
     private fun sendFloatNotification() {
+        val builder = NotificationCompat.Builder(this);
+        builder.setContentTitle("横幅通知");
+        builder.setContentText("请在设置通知管理中开启消息横幅提醒权限");
+        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background));
+        val intent = Intent(this, MainActivity::class.java)
+        val pIntent = PendingIntent.getActivity(this, 1, intent, 0);
+        builder.setContentIntent(pIntent);
+        //这句是重点
+        builder.setFullScreenIntent(pIntent, true);
+        builder.setAutoCancel(true);
+        val notification = builder.build();
+
+        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val id = "channalId"
+            val name = "channalName"
+            val channel = NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(channel)
+            Log.d("xxxm", "ddddd")
+        }
+
+        notificationManager.notify(1234, notification);
 
     }
 

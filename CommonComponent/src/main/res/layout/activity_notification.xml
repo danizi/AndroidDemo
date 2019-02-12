@@ -65,6 +65,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自定义通知" />
+
+        <Button
+            android:id="@+id/btn_pre_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开启前置播放服务" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
