@@ -1,6 +1,7 @@
 package com.wushu.tomato;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wushu.tomato.constant.Constant;
+import com.wushu.tomato.module.drawer.DrawerActivity;
 import com.wushu.tomato.module.todo.TodoRvAdapter;
 import com.wushu.tomato.module.todo.TodoTomatoBean;
 import com.wushu.tomato.module.todo.AddTodoDialog;
@@ -27,14 +30,11 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements AddTodoDialog.Listener {
 
-    private FloatingActionButton floatingActionButton;
     private RecyclerView rv;
     private List<TodoTomatoBean> todos = new ArrayList<>();
     private TodoRvAdapter adapter;
     private AddTodoDialog addTodoDialog;
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,31 +47,55 @@ public class MainActivity extends AppCompatActivity implements AddTodoDialog.Lis
     @SuppressLint("ClickableViewAccessibility")
     private void initView() {
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigation = findViewById(R.id.drawerNavigation);
-        toolbar = findViewById(R.id.toolbar);
-        floatingActionButton = findViewById(R.id.floatingActionButton);
+        NavigationView navigation = findViewById(R.id.drawerNavigation);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         //toolbar设置
         setSupportActionBar(toolbar);
-        toolbar.setTitle("首页");
+        toolbar.setTitle(R.string.home);
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
+                Intent intent;
                 switch (menuItem.getItemId()) {
+                    case R.id.add:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_ADD);
+                        startActivity(intent);
+                        break;
                     case R.id.share:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_SHARE);
+                        startActivity(intent);
                         break;
                     case R.id.setting:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_SETTING);
+                        startActivity(intent);
+                        break;
+                    case R.id.study_data:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_STUDY_DATA);
+                        startActivity(intent);
                         break;
                     case R.id.dress_up:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_DRESS_UP);
+                        startActivity(intent);
                         break;
                     case R.id.service:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_SERVICE);
+                        startActivity(intent);
+                        break;
+                    case R.id.problem:
+                        intent = new Intent(MainActivity.this, DrawerActivity.class);
+                        intent.putExtra(Constant.INTENT_PUT_EXTRA_GOTO, Constant.INTENT_DRAWER_VALUE_PROBLEM);
+                        startActivity(intent);
                         break;
                 }
-
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();
                 return false;
@@ -82,26 +106,16 @@ public class MainActivity extends AppCompatActivity implements AddTodoDialog.Lis
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                Toast.makeText(MainActivity.this, "菜单打开了", Toast.LENGTH_SHORT).show();
                 super.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                Toast.makeText(MainActivity.this, "菜单关闭了", Toast.LENGTH_SHORT).show();
                 super.onDrawerClosed(drawerView);
             }
         };
         drawerToggle.syncState();
         drawerLayout.addDrawerListener(drawerToggle);
-
-        //悬浮按钮设置监听
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addTodoDialog.show(getSupportFragmentManager(), "addTodoDialog");
-            }
-        });
     }
 
     @Override
@@ -134,5 +148,4 @@ public class MainActivity extends AppCompatActivity implements AddTodoDialog.Lis
         todos.add(todoTomatoBean);
         adapter.notifyDataSetChanged();
     }
-
 }

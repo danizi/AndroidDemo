@@ -17,7 +17,7 @@ import com.wushu.tomato.utils.DateUtil;
 
 import java.util.List;
 
-import static com.wushu.tomato.module.todo.Constant.INTENT_PUT_EXTRA_TODO_TOMATO_BEAN;
+import static com.wushu.tomato.constant.Constant.INTENT_PUT_EXTRA_TODO_TOMATO_BEAN;
 
 /**
  * 任务适配器

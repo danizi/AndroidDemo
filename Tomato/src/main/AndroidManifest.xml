@@ -26,6 +26,8 @@
             android:launchMode="singleTop" />
 
         <service android:name=".module.todo.TodoService" />
+
+        <activity android:name=".module.drawer.DrawerActivity"></activity>
     </application>
 
 </manifest>

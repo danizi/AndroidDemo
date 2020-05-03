@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Tomato</string>
-    <string name="openString">打开</string>
-    <string name="closeString">关闭</string>
+
+    <string name="home">首页</string>
 
     <!--抽屉-->
+    <string name="openString">打开</string>
+    <string name="closeString">关闭</string>
+    <string name="drawer_nick_name">Andy Lau</string>
+    <string name="drawer_desc">做一稞低头的麦穗，饱满而谦逊！</string>
     <string name="drawer_add_todo">添加任务</string>
     <string name="drawer_share">分享</string>
     <string name="drawer_setting">设置</string>
@@ -13,5 +17,4 @@
     <string name="drawer_service">客服</string>
     <string name="drawer_problem">常见问题</string>
     <string name="drawer_mode_night">夜间</string>
-
 </resources>
