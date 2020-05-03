@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodoActivity">
+    tools:context=".module.todo.TodoActivity">
 
-    <com.wushu.tomato.CircleProgressView
+    <com.wushu.tomato.module.todo.CircleProgressView
         android:id="@+id/circleProgressView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -16,14 +16,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:circleSize="20"
+        app:curProgress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:progress="0.4"
-        app:textSize="100"
-        app:progressColor="#7e55ab" />
+        app:progressColor="#7e55ab"
+        app:textSize="100" />
 
 </android.support.constraint.ConstraintLayout>

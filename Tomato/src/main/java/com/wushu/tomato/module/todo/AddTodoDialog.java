@@ -1,4 +1,4 @@
-package com.wushu.tomato;
+package com.wushu.tomato.module.todo;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+
+import com.wushu.tomato.MainActivity;
+import com.wushu.tomato.R;
 
 /**
  * 添加任务弹框
@@ -64,7 +67,7 @@ public class AddTodoDialog extends DialogFragment {
         return dlg;
     }
 
-    interface Listener {
+    public interface Listener {
         void onAddTodo(String todoName, float rating);
     }
 }

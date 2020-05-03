@@ -1,4 +1,4 @@
-package com.wushu.tomato;
+package com.wushu.tomato.module.todo;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,8 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.wushu.tomato.R;
 
 
 /**
@@ -28,9 +30,10 @@ public class CircleProgressView extends View {
     private int mOriginalColor = Color.GRAY;
     private int mProgressColor = Color.RED;
     private String mProgressDes = "0";
-    private float mProgress = 0.1f;
+    private float mCurProgress = 0.1f;
     private int mTextSize = 30;
     private CircleProgressListenter mCircleProgressListenter;
+    private float mProgressMax = 1.f;
 
     enum State {
         PROGRESS,
@@ -71,11 +74,14 @@ public class CircleProgressView extends View {
                 case R.styleable.CircleProgressView_progressColor:
                     mProgressColor = a.getColor(attr, Color.RED);
                     break;
-                case R.styleable.CircleProgressView_progress:
-                    mProgress = a.getFloat(attr, 0);
+                case R.styleable.CircleProgressView_curProgress:
+                    mCurProgress = a.getFloat(attr, 0);
                     break;
                 case R.styleable.CircleProgressView_textSize:
                     mTextSize = a.getInteger(attr, 30);
+                    break;
+                case R.styleable.CircleProgressView_max:
+                    mProgressMax = a.getInteger(attr, 1);
                     break;
             }
         }
@@ -108,7 +114,7 @@ public class CircleProgressView extends View {
         // 1 画一个原始圆圈 圆圈的宽度 原始颜色
         drawCircle(canvas, mRadius = (int) (getWidth() / 2 - mOriginalPaint.getStrokeWidth()), mOriginalPaint);
         // 2 画一个进度圆圈 圆圈的宽度 进度颜色 进度
-        drawProgress(canvas, mProgress, mProgressPaint);
+        drawProgress(canvas, mCurProgress / mProgressMax, mProgressPaint);
         // 3 画一个进度描述 颜色 进度文字描述
         drawProgressDes(canvas, mProgressDesPaint);
     }
@@ -117,7 +123,7 @@ public class CircleProgressView extends View {
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, radius, paint);
     }
 
-    private void drawProgress(Canvas canvas,float progress, Paint paint) {
+    private void drawProgress(Canvas canvas, float progress, Paint paint) {
         int Angle = 270;
         int sweepAngle = (int) (360 * progress);
         int centerX = getWidth() / 2;
@@ -128,7 +134,7 @@ public class CircleProgressView extends View {
     }
 
     private void drawProgressDes(Canvas canvas, Paint paint) {
-        mProgressDes = Integer.toString((int) (100 * mProgress)) + "%";
+        //mProgressDes = Integer.toString((int) (100 * mCurProgress)) + "%";
         canvas.drawText(mProgressDes, (getWidth() - getTextBounds().width()) / 2, getHeight() / 2 + getTextBaseline(), paint);
     }
 
@@ -147,7 +153,9 @@ public class CircleProgressView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(getMeasureWidth(widthMeasureSpec), getMeasureHeight(heightMeasureSpec));
+        int measureWidth = getMeasureWidth(widthMeasureSpec);
+        int measureHeight = getMeasureHeight(heightMeasureSpec);
+        setMeasuredDimension(measureWidth, measureHeight > measureWidth ? measureWidth : measureHeight);
     }
 
     private int getMeasureWidth(int widthMeasureSpec) {
@@ -197,8 +205,16 @@ public class CircleProgressView extends View {
         this.mCircleProgressListenter = listener;
     }
 
+    public void setMax(float max) {
+        this.mProgressMax = max;
+    }
+
     public void setProgress(float progress) {
-        this.mProgress = progress;
+        this.mCurProgress = progress;
         postInvalidate();
+    }
+
+    public void setProgressDes(String des) {
+        this.mProgressDes = des;
     }
 }

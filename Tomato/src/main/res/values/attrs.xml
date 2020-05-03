@@ -4,7 +4,8 @@
     <declare-styleable name="CircleProgressView">
         <attr name="originalColor" format="color" />
         <attr name="progressColor" format="color" />
-        <attr name="progress" format="float"/>
+        <attr name="curProgress" format="float"/>
+        <attr name="max" format="float"/>
         <attr name="circleSize" format="integer" />
         <attr name="textSize" format="integer" />
     </declare-styleable>

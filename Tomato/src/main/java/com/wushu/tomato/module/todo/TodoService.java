@@ -1,4 +1,4 @@
-package com.wushu.tomato;
+package com.wushu.tomato.module.todo;
 
 import android.app.Service;
 import android.content.Context;
@@ -9,8 +9,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
+
+import com.wushu.tomato.utils.DateUtil;
+
+import static com.wushu.tomato.module.todo.Constant.INTENT_PUT_EXTRA_TODO_TOMATO_BEAN;
 
 /**
  * 开启一个服务
@@ -22,12 +25,16 @@ public class TodoService extends Service {
     public static final int MSG_ACTIVITY_ON_DESTROY = 0x01;
     public static final int MSG_ACTIVITY_ON_TICK = 0x02;
     public static final int MSG_ACTIVITY_ON_TICK_FINISH = 0x03;
+    public static final int MSG_ACTIVITY_DOWN_TIMER_LISTENER = 0x04;
     private TodoBinder todoBinder;
     private TodoService.MyCountDownTimer myCountDownTimer;
     private Context context;
     private long millisUntilFinished;
     private long countDownInterval = 1000;
-    private long millisInFuture = 1000 * 10;
+    private long millisInFuture = 0;
+    private CountDownTimerListener countDownTimerListener;
+    private TodoTomatoBean todoTomatoBean;
+
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
@@ -41,13 +48,23 @@ public class TodoService extends Service {
                     stopSelf();
                     break;
                 case MSG_ACTIVITY_ON_TICK:
+                    if (null != countDownTimerListener) {
+                        countDownTimerListener.onTick(millisUntilFinished);
+                    }
                     todoBinder.setComplete(false);
-                    millisUntilFinished = (long) msg.obj / 1000;
-                    Log.d(TAG, "计时器所剩时间:" + millisUntilFinished);
+                    millisUntilFinished = (long) msg.obj;
+                    Log.d(TAG, "计时器所剩时间单位秒:" + millisUntilFinished / 1000);
                     break;
                 case MSG_ACTIVITY_ON_TICK_FINISH:
+                    if (null != countDownTimerListener) {
+                        countDownTimerListener.onFinish();
+                    }
                     todoBinder.setComplete(true);
                     Log.d(TAG, "计时器onFinish");
+                    break;
+                case MSG_ACTIVITY_DOWN_TIMER_LISTENER:
+                    countDownTimerListener = (CountDownTimerListener) msg.obj;
+                    Log.d(TAG, "计时器设置监听:" + countDownTimerListener);
                     break;
             }
         }
@@ -62,6 +79,12 @@ public class TodoService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind");
+        todoTomatoBean = (TodoTomatoBean) intent.getSerializableExtra(INTENT_PUT_EXTRA_TODO_TOMATO_BEAN);
+        millisInFuture = (long) (todoTomatoBean.getTomatoNum() * todoTomatoBean.getUnit());
+        todoBinder = new TodoBinder(handler);
+        myCountDownTimer = new MyCountDownTimer(millisInFuture, countDownInterval, handler);
+        todoBinder.setComplete(false);
+        myCountDownTimer.start();
         return todoBinder;
     }
 
@@ -74,10 +97,7 @@ public class TodoService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        todoBinder = new TodoBinder(handler);
-        myCountDownTimer = new MyCountDownTimer(millisInFuture, countDownInterval, handler);
-        todoBinder.setComplete(false);
-        myCountDownTimer.start();
+
         Log.d(TAG, "onCreate");
     }
 
@@ -105,6 +125,9 @@ public class TodoService extends Service {
         if (null != context) {
             Intent intent1 = new Intent(context, TodoActivity.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            todoTomatoBean.setProgress(millisUntilFinished);
+            todoTomatoBean.setProgressDes(DateUtil.msToDate((int) todoTomatoBean.getProgress()));
+            intent1.putExtra(INTENT_PUT_EXTRA_TODO_TOMATO_BEAN, todoTomatoBean);
             context.startActivity(intent1);
             Log.d(TAG, "reStartTodoActivity");
         }
@@ -142,6 +165,21 @@ public class TodoService extends Service {
         void setComplete(boolean isComplete) {
             this.isComplete = isComplete;
         }
+
+        void setDownTimerListener(CountDownTimerListener listener) {
+            if (null != handler) {
+                Message msg = handler.obtainMessage();
+                msg.what = MSG_ACTIVITY_DOWN_TIMER_LISTENER;
+                msg.obj = listener;
+                handler.sendMessage(msg);
+            }
+        }
+    }
+
+    interface CountDownTimerListener {
+        void onTick(long millisUntilFinished);
+
+        void onFinish();
     }
 
     static class MyCountDownTimer extends CountDownTimer {
