@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesign', ':CommonComponent'
+include ':app', ':MaterialDesign', ':CommonComponent', ':Tomato'

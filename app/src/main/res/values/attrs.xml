@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <!--仿造TextView-->
+    <declare-styleable name="MyTextView">
+        <attr name="Color" format="color"/>
+        <attr name="Text" format="string"/>
+        <attr name="Size" format="dimension"/>
+    </declare-styleable>
+
+    <!--步数进度-->
+    <declare-styleable name="StepView">
+        <attr name="arcTextSize" format="integer"/>
+        <attr name="bgArcColor" format="color"/>
+        <attr name="progressArcColor" format="color"/>
+        <attr name="arcProgress" format="float"/>
+        <attr name="arcSize" format="integer"/>
+    </declare-styleable>
+
+    <!--圆圈进度-->
+    <declare-styleable name="CircleProgressView">
+
+        <attr name="originalColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="progress" format="float"/>
+        <attr name="circleSize" format="integer" />
+    </declare-styleable>
+
+</resources>

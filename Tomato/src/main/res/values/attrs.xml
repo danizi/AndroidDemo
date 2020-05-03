@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <!--圆圈进度-->
+    <declare-styleable name="CircleProgressView">
+        <attr name="originalColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="progress" format="float"/>
+        <attr name="circleSize" format="integer" />
+        <attr name="textSize" format="integer" />
+    </declare-styleable>
+
+</resources>
