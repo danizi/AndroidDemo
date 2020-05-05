@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-    <!--圆圈进度-->
+    <!--圆圈进度控件-->
     <declare-styleable name="CircleProgressView">
         <attr name="originalColor" format="color" />
         <attr name="progressColor" format="color" />
-        <attr name="curProgress" format="float"/>
-        <attr name="max" format="float"/>
+        <attr name="curProgress" format="float" />
+        <attr name="max" format="float" />
         <attr name="circleSize" format="integer" />
         <attr name="textSize" format="integer" />
+    </declare-styleable>
+
+    <!--等级控件-->
+    <declare-styleable name="MyRatingBar">
+        <attr name="ratingBarBgRes" format="reference" />
+        <attr name="ratingBarRes" format="reference" />
+        <attr name="selNum" format="integer" />
+        <attr name="totalNum" format="integer" />
     </declare-styleable>
 
 </resources>

@@ -17,16 +17,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RatingBar
+    <com.wushu.tomato.module.todo.MyRatingBar
         android:id="@+id/ratingTomato"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:numStars="0"
-        android:rating="3"
-        app:layout_constraintStart_toStartOf="@+id/inputTodo"
-        app:layout_constraintTop_toBottomOf="@+id/inputTodo" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputTodo"
+        app:ratingBarBgRes="@mipmap/tomato_un_sel"
+        app:ratingBarRes="@mipmap/tomato_sel"
+        app:selNum="0"
+        app:totalNum="5" />
 
     <Button
         android:id="@+id/btnEnter"
@@ -40,5 +44,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingTomato"
         app:layout_constraintVertical_bias="1.0" />
+
 
 </android.support.constraint.ConstraintLayout>

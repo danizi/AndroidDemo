@@ -3,7 +3,6 @@ package com.wushu.tomato.module.todo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 
 import com.wushu.tomato.MainActivity;
 import com.wushu.tomato.R;
@@ -49,7 +47,7 @@ public class AddTodoDialog extends DialogFragment {
         View view = LayoutInflater.from(context).inflate(R.layout.dlg_todo, null, false);
         dlg = new AlertDialog.Builder(context).setTitle("添加任务").setView(view).create();
         final EditText editTextTodo = view.findViewById(R.id.inputTodo);
-        final RatingBar ratingBarTomato = view.findViewById(R.id.ratingTomato);
+        final MyRatingBar ratingBarTomato = view.findViewById(R.id.ratingTomato);
         Button btnEnter = view.findViewById(R.id.btnEnter);
         btnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
