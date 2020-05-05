@@ -3,24 +3,23 @@ package com.wushu.tomato;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.wushu.tomato.constant.Constant;
 import com.wushu.tomato.module.drawer.DrawerActivity;
+import com.wushu.tomato.module.todo.AddTodoDialog;
 import com.wushu.tomato.module.todo.TodoRvAdapter;
 import com.wushu.tomato.module.todo.TodoTomatoBean;
-import com.wushu.tomato.module.todo.AddTodoDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements AddTodoDialog.Lis
         Toolbar toolbar = findViewById(R.id.toolbar);
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider));
+//        rv.addItemDecoration(dividerItemDecoration);
 
         //toolbar设置
         setSupportActionBar(toolbar);
