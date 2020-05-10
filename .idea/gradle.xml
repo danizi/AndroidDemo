@@ -8,10 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/CommonComponent" />
-            <option value="$PROJECT_DIR$/MaterialDesign" />
-            <option value="$PROJECT_DIR$/Tomato" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/Lib_componet" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
