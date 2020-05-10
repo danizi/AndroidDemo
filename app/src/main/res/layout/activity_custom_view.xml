@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.custom.CustomViewActivity">
 
-
     <demo.xm.com.demo.view.custom.MyTextView
         android:id="@+id/myTextView"
         android:layout_width="wrap_content"
@@ -14,6 +13,7 @@
         android:layout_marginTop="28dp"
         android:background="@color/colorAccent"
         android:padding="0dp"
+        android:visibility="gone"
         app:Size="40sp"
         app:Text="girl"
         app:layout_constraintTop_toBottomOf="@+id/colorTrackView" />
@@ -27,6 +27,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/app_name"
         android:textColor="@color/colorAccent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleProgressView" />
 
@@ -39,6 +40,7 @@
         android:padding="0dp"
         android:text="girl"
         android:textSize="40sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/myTextView"
         app:layout_constraintTop_toBottomOf="@+id/myTextView"
         tools:ignore="MissingConstraints" />
@@ -47,18 +49,19 @@
         android:id="@+id/viewStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:arcProgress="0.9"
         app:arcSize="20"
         app:arcTextSize="34"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <demo.xm.com.demo.view.custom.CircleProgressView
         android:id="@+id/circleProgressView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         app:circleSize="20"
         app:layout_constraintTop_toBottomOf="@+id/viewStep"
         app:originalColor="@color/colorAccent"
@@ -73,6 +76,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="启动动画"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/circleProgressView"
         app:layout_constraintStart_toEndOf="@+id/circleProgressView"
         app:layout_constraintTop_toTopOf="@+id/circleProgressView" />
@@ -84,6 +88,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="启动动画"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/viewStep"
         app:layout_constraintStart_toEndOf="@+id/viewStep"
         app:layout_constraintTop_toTopOf="@+id/viewStep" />
@@ -96,8 +101,19 @@
         android:layout_marginRight="8dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="list conetxt" />
+
+    <demo.xm.com.demo.view.custom.ExpandTabView
+        android:id="@+id/expanded_tab_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
