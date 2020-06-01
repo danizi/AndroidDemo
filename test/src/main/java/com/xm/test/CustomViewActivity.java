@@ -11,6 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import com.xm.componet.CircleProgressView;
+import com.xm.componet.DragView;
 import com.xm.componet.ExpandTabView;
 import com.xm.componet.StepView;
 
@@ -20,6 +21,22 @@ public class CustomViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view);
+        DragView.attach(findViewById(R.id.btn), new DragView.DragViewListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onDrag() {
+
+            }
+
+            @Override
+            public void onDismiss() {
+
+            }
+        });
 
         final String tabs[] = {"tab1", "tab2", "tab3", "tab4"};
         ExpandTabView expandTabView = findViewById(R.id.expanded_tab_view);
