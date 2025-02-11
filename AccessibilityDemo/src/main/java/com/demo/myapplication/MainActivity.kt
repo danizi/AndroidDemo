@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         AccessibilityClient()
             .log { msg -> Log.d("MainActivity", msg) }
             .configs(accessibilityConfigs())
+            .newCall()
             .setAccessibilityDelegate()
     }
 
